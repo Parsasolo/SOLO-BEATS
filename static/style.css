@@ -1,0 +1,81 @@
+body {
+  background-color: #111;
+  font-family: Tahoma;
+  color: #fff;
+  text-align: center;
+}
+
+h1 {
+  color: #c500ff;
+  margin-top: 20px;
+}
+
+.upload-form {
+  margin: 20px auto;
+}
+
+.upload-form input, .upload-form button {
+  margin: 5px;
+  padding: 8px;
+}
+
+.login-btn {
+  background: #500080;
+  padding: 8px 16px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.music-card {
+  margin: 40px auto;
+  width: 300px;
+  text-align: center;
+}
+
+.cover-container {
+  width: 250px;
+  height: 250px;
+  margin: auto;
+  padding: 8px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, red, orange, yellow, green, cyan, blue, violet, red);
+  background-size: 400% 400%;
+  animation: rgb-border 6s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes rgb-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.music-cover {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.glass-player {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.delete-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: crimson;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}

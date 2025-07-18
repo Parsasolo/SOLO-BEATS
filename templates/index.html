@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- بهینه سازی موبایل -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>SOLO BEATS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #0f0f0f, #1a002d);
+            color: white;
+            font-family: 'Vazirmatn', sans-serif;
+            text-align: center;
+            padding: 20px;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
+            background: transparent;
+        }
+
+        .logo-title {
+            font-size: 60px;
+            font-family: 'Audiowide', cursive;
+            color: #a855f7;
+            text-shadow: 0 0 10px #a855f7, 0 0 25px #6b21a8;
+            border-top: 2px solid #9333ea;
+            border-bottom: 2px solid #9333ea;
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px #a855f7; }
+            50% { text-shadow: 0 0 20px #d8b4fe; }
+            100% { text-shadow: 0 0 10px #a855f7; }
+        }
+
+        form.search-bar {
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .music-box {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 15px;
+            width: 300px;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }.cover-wrapper {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cover-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: conic-gradient(from 0deg, red, orange, yellow, green, cyan, blue, purple, red);
+    border-radius: 20px;
+    animation: spin 4s linear infinite;
+    z-index: 1;
+}
+
+.cover-wrapper img {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+}
+        }
+
+        .cover-wrapper img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        @keyframes borderAnimation {
+            to {
+                border-image-slice: 1;
+                border-image-source: linear-gradient(135deg, purple, cyan, magenta, orange, purple);
+            }
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 6px 12px;
+            margin: 5px;
+            border-radius: 10px;
+            background-color: #6b21a8;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .button:hover {
+            background-color: #9333ea;
+        }
+
+        .upload-form {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lyrics-box {
+            display: none;
+            margin-top: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            line-height: 1.7;
+        }
+
+        /* حالت روشن */
+        body.light-mode {
+            background: linear-gradient(to bottom right, #fdfbfb, #ebedee);
+            color: #222;
+        }
+
+        body.light-mode .music-box,
+        body.light-mode .upload-form,
+        body.light-mode .lyrics-box {
+            background: rgba(0, 0, 0, 0.05);
+            color: #000;
+        }
+
+        body.light-mode .button {
+            background-color: #8e44ad;
+            color: white;
+        }
+
+        body.light-mode .button:hover {
+            background-color: #a569bd;
+        }
+
+        body.light-mode .cover-wrapper {
+            border-image-source: linear-gradient(45deg, orange, red, purple);
+        }
+
+        .darkmode-toggle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #6b21a8;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.9em;
+            z-index: 9999;
+        }
+
+        /* ریسپانسیو برای موبایل */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .logo-title {
+                font-size: 40px;
+                padding: 10px;
+                margin-bottom: 20px;
+            }
+            form.search-bar input[type="text"] {
+                width: 100%;
+            }
+            .music-box {
+                width: 100%;
+                margin: 10px 0;
+                padding: 15px;
+            }
+            .upload-form {
+                width: 100%;
+                padding: 15px;
+            }
+            audio {
+                width: 100%;
+            }
+            .darkmode-toggle {
+                bottom: 15px;
+                left: 15px;
+                padding: 8px 12px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+
+    <script>
+        function toggleLyrics(index) {
+            var box = document.getElementById("lyrics-" + index);
+            if (box.style.display === "none" || box.style.display === "") {
+                box.style.display = "block";
+            } else {
+                box.style.display = "none";
+            }
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle("light-mode");
+            localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+        }
+
+        window.onload = function () {
+            const theme = localStorage.getItem("theme");
+            if (theme === "light") {
+                document.body.classList.add("light-mode");
+            }
+        };
+    </script>
+</head>
+
+<body>
+<header>
+    <div class="logo-title">SOLO BEATS</div>
+</header>
+
+<form class="search-bar" method="GET">
+    <input type="text" name="search" placeholder="جستجوی آهنگ..." value="{{ search }}">
+    <button class="button" type="submit">جستجو</button>
+</form>
+
+{% for item in music_list %}
+<div class="music-box">
+    <h3>{{ item.name }}</h3>
+    <p>دسته: {{ item.category }}</p>
+    {% if item.cover %}
+    <div class="cover-wrapper">
+        <img src="{{ item.cover }}" alt="کاور">
+    </div>
+    {% endif %}
+    <audio controls>
+        <source src="/static/music/{{ item.name }}">
+        مرورگر شما از پخش موزیک پشتیبانی نمی‌کند.
+    </audio>
+    <div>
+        <a class="button" href="/download/{{ item.name }}">دانلود</a>
+        {% if admin %}
+        <a class="button" href="/delete/{{ item.name }}">🗑️ حذف</a>
+        {% endif %}
+    </div>
+    {% if item.lyrics %}
+    <button class="button" onclick="toggleLyrics('{{ loop.index }}')">📄 نمایش متن آهنگ</button>
+    <div class="lyrics-box" id="lyrics-{{ loop.index }}">
+        {{ item.lyrics }}
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+
+{% if admin %}
+<div class="upload-form">
+    <h3>افزودن آهنگ جدید</h3>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="music" required><br><br>
+        <input type="file" name="cover" accept="image/*"><br><br>
+        <textarea name="lyrics" placeholder="متن آهنگ..." rows="5" style="width: 100%; border-radius: 10px; padding: 10px;"></textarea><br><br>
+        <button class="button" type="submit">آپلود</button>
+    </form>
+    <br>
+    <a class="button" href="/logout">خروج از حساب</a>
+</div>
+{% else %}
+<br><br>
+<a class="button" href="/login">ورود ادمین</a>
+{% endif %}
+
+<footer style="text-align: center; margin-top: 50px;">
+    <a href="https://www.instagram.com/parsa____cheraghi?igsh=MW8xcm8waTdvY3M0MA==" target="_blank">
+        <img src="{{ url_for('static', filename='images/instagram_dark_icon.png') }}"
+             alt="Instagram"
+             style="width: 40px; height: 40px; filter: drop-shadow(0 0 5px #9b59b6);">
+    </a>
+</footer>
+
+<!-- دکمه حالت تاریک / روشن -->
+<button class="darkmode-toggle" onclick="toggleMode()">🌓 حالت نمایش</button>
+
+</body>
+</html>
